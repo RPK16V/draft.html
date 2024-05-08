@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>飞鸟马时超超超极可爱</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            list-style: none;
+        }
+        #banner {
+            width: 900px;
+            height: 1600px;
+            border: 2px solid #999;
+            overflow: hidden;
+            position: relative;
+            margin: auto;
+        }
+        #imglist {
+            width: 5400px;
+            height: 1600px;
+        }
+        #imglist img {
+            width: 900px;
+            height: 1600px;
+        }
+        #imglist li {
+            float: left;
+        }
+        .prev {
+            background: #666;
+            width: 30px;
+            height: 40px;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            position: absolute;
+            left: 5px;
+            top: 45%;
+            cursor: pointer;
+        }
+        .next {
+            background: #666;
+            width: 30px;
+            height: 40px;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            position: absolute;
+            right: 5px;
+            top: 45%;
+            cursor: pointer;
+        }
+        .prev:hover {
+            background-color: aqua;
+        }
+        .next:hover {
+            background-color: aqua;
+        }
+        #icolist {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+
+        }
+        #icolist li {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #666;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            float: left;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        .banner2 {
+            position: relative;
+            margin: auto;
+        }
+        .banner2 h1{
+            font-size: 400px;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .banner2 p {
+            font-size: 100px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        #name {
+            color: aqua;
+            font-family: '宋体';
+            font-size: larger;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="banner">
+        <ul id="imglist">
+            <li><img src="C:\Users\linze\Desktop\Pictures\微信图片_20240508004803.jpg" alt="飞鸟马时01"></li>
+            <li><img src="C:\Users\linze\Desktop\Pictures\微信图片_20240508005304.jpg" alt="飞鸟马时02"></li>
+            <li><img src="C:\Users\linze\Desktop\Pictures\微信图片_20240508005311.jpg" alt="飞鸟马时03"></li>
+            <li><img src="C:\Users\linze\Desktop\Pictures\微信图片_20240508005318.jpg" alt="飞鸟马时04"></li>
+            <li><img src="C:\Users\linze\Desktop\Pictures\微信图片_20240508005322.jpg" alt="飞鸟马时05"></li>
+            <li><img src="C:\Users\linze\Desktop\Pictures\微信图片_20240508004803.jpg" alt="飞鸟马时01"></li>
+        </ul>
+        <ul id="icolist">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="prev"><</div>
+        <div class="next">></div>
+    </div>
+    <div class="banner2">
+        <h1>飞鸟马时</h1>
+        <p><span id="name">飞鸟马时</span>是千年科学学园C&C部第五位成员，代号04。<br>与活跃于各大机密任务的其他成员不同<br>飞鸟在Vol2第二章完结前一直作为调月莉音的私人保镖，<br>其他成员与她相识甚微。
+            在Vol2第二章完结后，<br>时也开始和前辈们一起行动，但大部分时间都没什么事做，她通常会去老师那里打发时间。</p>
+    </div>
+    <audio src="C:\Users\linze\Desktop\U\ZUTOMAYO\ZUTOMA\ずっと真夜中でいいのに。 - 胸の煙.flac" controls></audio>
+    <script>
+        var eprev=document.querySelector('.prev');
+        var enext=document.querySelector('.next');
+        var esico=document.getElementById('icolist').getElementsByTagName('li');
+        var eicolist=document.querySelector('#icolist');
+        var eimglist=document.querySelector('#imglist');
+        var left=0;
+        var timer;
+        run();
+        function run(){
+            if (left<=-4500){
+                left=0;
+            }
+            var m=Math.floor(-left/900);
+            imglist.style.marginLeft=left+'px';
+            var n=(left%900==0)?n=1200:n=10;
+            left-=10;
+            timer=setTimeout(run,n);
+            icochange(m);
+        }
+        //图片定位函数
+        function imgchange(n){
+            let lt=-(n*900);
+            imglist.style.marginLeft=lt+'px';
+            left=lt;
+        }
+        eprev.onclick=function(){
+            let prevgo=Math.floor(-left/900)-1;
+            if (prevgo==-1){
+                prevgo=4;
+            }
+            imgchange(prevgo);
+        }
+        enext.onclick=function(){
+            let nextgo=Math.floor(-left/900)+1;
+            if (nextgo==5){
+                nextgo=0;
+            }
+            imgchange(nextgo);
+        }
+        function icochange(m){
+            for (let index=0;index<esico.length;index++){
+                esico[index].style.backgroundColor='';
+            }
+            if (m<esico.length){
+                esico[m].style.backgroundColor='aqua';
+            }
+        }
+        eicolist.onclick=function(){
+            var tg=event.target;
+            let ico=tg.innerHTML-1;
+            imgchange(ico);
+            icochange(ico);
+        }
+        // eimglist.onmouseoverover=function(){
+        //     clearTimeout(timer);
+        // }
+        // eimglist.onmouseout=function(){
+        //     run();
+        // }
+    </script>
+</body>
+</html>
